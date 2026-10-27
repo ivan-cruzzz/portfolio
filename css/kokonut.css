@@ -1,0 +1,1147 @@
+/* ============================================================
+   Kokonut UI — портированные компоненты (vanilla CSS)
+   Источник: kokonutui.com (MIT): liquid-glass-card, card-flip,
+   switch-button, pull-cord, morph-popover.
+   Здесь же: тёмная тема сайта (data-theme="dark" на <html>).
+   ============================================================ */
+
+/* ---------- Тёмная тема: токены сайта ---------- */
+:root {
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --background: #0d0d0f;
+  --surface-muted: #141416;
+  --foreground: #f4f4f5;
+  --accent: #e4e4e7;
+  --text-secondary: #9d9da6;
+  --border: #262629;
+  --border-subtle: #1b1b1e;
+  --border-strong: #3a3a40;
+  --blue-50: #172554;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-floating: 0 20px 48px rgba(0, 0, 0, 0.5), 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Точечные тёмные переопределения для компонентов style.css */
+[data-theme='dark'] .site-header {
+  border-bottom-color: var(--border-subtle);
+}
+
+[data-theme='dark'] .icon-btn {
+  color: #b3b3bc;
+}
+
+[data-theme='dark'] .icon-btn:hover {
+  background: #1e1e22;
+  color: var(--foreground);
+}
+
+[data-theme='dark'] ::selection {
+  background: #3f3f46;
+}
+
+[data-theme='dark'] .section--surface {
+  background: var(--surface-muted);
+  border-top-color: var(--border-subtle);
+  border-bottom-color: var(--border-subtle);
+}
+
+[data-theme='dark'] .hero__stats {
+  border-top-color: var(--border-subtle);
+}
+
+[data-theme='dark'] .project-card {
+  background: var(--surface-muted);
+}
+
+[data-theme='dark'] .project-card__tags li {
+  background: var(--background);
+}
+
+[data-theme='dark'] .stack-chips li {
+  background: var(--surface-muted);
+}
+
+[data-theme='dark'] .ghost-btn:hover {
+  background: #1e1e22;
+}
+
+[data-theme='dark'] .dock {
+  background: rgba(20, 20, 24, 0.8);
+  border-color: rgba(63, 63, 70, 0.5);
+}
+
+[data-theme='dark'] .dock__divider {
+  background: #3f3f46;
+}
+
+[data-theme='dark'] .dock-item {
+  color: #b3b3bc;
+}
+
+[data-theme='dark'] .dock-item:hover {
+  background: #26262b;
+}
+
+[data-theme='dark'] .skip-link {
+  color: #111111;
+  background: #f4f4f5;
+}
+
+/* Ховер CTA в тёмной теме: белая заливка → тёмный текст */
+[data-theme='dark'] .flow-btn:hover .flow-btn__label,
+[data-theme='dark'] .flow-btn:focus-visible .flow-btn__label {
+  color: var(--background);
+}
+
+/* ============================================================
+   Switch Button — тумблер темы
+   ============================================================ */
+.kc-switch {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.kc-switch:hover {
+  border-color: var(--border-strong);
+}
+
+.kc-switch:active {
+  background: var(--surface-muted);
+}
+
+.kc-switch:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.kc-switch__icon {
+  pointer-events: none;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.kc-switch__labels {
+  display: grid;
+  line-height: 1;
+}
+
+.kc-switch__labels span {
+  grid-area: 1 / 1;
+}
+
+.kc-switch__labels span:nth-child(2) {
+  opacity: 0;
+  filter: blur(3px);
+}
+
+[data-theme='dark'] .kc-switch__labels span:nth-child(1) {
+  opacity: 0;
+  filter: blur(3px);
+}
+
+[data-theme='dark'] .kc-switch__labels span:nth-child(2) {
+  opacity: 1;
+  filter: none;
+}
+
+/* Части иконки солнце/луна: состояние задаёт тема, морф — WAAPI в JS */
+.kc-switch .kc-sw-bite {
+  transform: translate(10px, -10px);
+}
+
+[data-theme='dark'] .kc-switch .kc-sw-bite {
+  transform: none;
+}
+
+.kc-switch .kc-sw-disc {
+  transform-origin: 12px 12px;
+  transform-box: view-box;
+}
+
+[data-theme='dark'] .kc-switch .kc-sw-disc {
+  transform: scale(1.8);
+}
+
+.kc-switch .kc-sw-ray {
+  transform-origin: 12px 12px;
+  transform-box: view-box;
+}
+
+[data-theme='dark'] .kc-switch .kc-sw-ray {
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+/* ============================================================
+   Liquid Glass Card / Now Playing — виниловый плеер
+   ============================================================ */
+.kc-glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  padding: 20px;
+}
+
+[data-theme='dark'] .kc-glass {
+  background: rgba(28, 28, 32, 0.4);
+}
+
+/* Преломление фона (только Chromium); остальным браузерам — просто blur */
+.kc-glass__refract {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-backdrop-filter: url('#kc-glass-filter');
+  backdrop-filter: url('#kc-glass-filter');
+}
+
+/* Внутренние стеклянные блики (inset-тени) */
+.kc-glass__shadow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow:
+    0 0 6px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 3px 3px 0.5px -3px rgba(0, 0, 0, 0.9),
+    inset -3px -3px 0.5px -3px rgba(0, 0, 0, 0.85),
+    inset 1px 1px 1px -0.5px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 1px -0.5px rgba(0, 0, 0, 0.6),
+    inset 0 0 6px 6px rgba(0, 0, 0, 0.12),
+    inset 0 0 2px 2px rgba(0, 0, 0, 0.06),
+    0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .kc-glass__shadow {
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.09),
+    inset -3px -3px 0.5px -3.5px rgba(255, 255, 255, 0.85),
+    inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.6),
+    inset -1px -1px 1px -0.5px rgba(255, 255, 255, 0.6),
+    inset 0 0 6px 6px rgba(255, 255, 255, 0.12),
+    inset 0 0 2px 2px rgba(255, 255, 255, 0.06),
+    0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================================
+   Now Playing — внутренности плеера
+   ============================================================ */
+.kc-np {
+  width: 100%;
+  max-width: 24rem;
+}
+
+.kc-np__body {
+  position: relative;
+  z-index: 1;
+}
+
+.kc-np__top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.kc-np__deck {
+  position: relative;
+  flex-shrink: 0;
+  width: 112px;
+  height: 112px;
+}
+
+.kc-np__disc {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.45);
+  will-change: transform;
+}
+
+.kc-np__disc:active {
+  cursor: grabbing;
+}
+
+.kc-np__disc svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.kc-np__tonearm {
+  position: absolute;
+  top: -4px;
+  right: -16px;
+  height: 80%;
+  width: auto;
+  pointer-events: none;
+  transform-origin: 77.5% 10%;
+  transform: rotate(-8deg);
+  transition: transform 700ms cubic-bezier(0.4, 0.05, 0.2, 1);
+}
+
+.kc-np.is-playing .kc-np__tonearm {
+  transform: rotate(11deg);
+}
+
+.kc-np__meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.kc-np__meterline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kc-np__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.kc-np__bar {
+  width: 3px;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--now-playing-accent, #f97316);
+  transform-origin: bottom;
+  transform: scaleY(0.14);
+}
+
+.kc-np__eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.kc-np__title {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kc-np__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kc-np__title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.kc-np__artist {
+  font-size: 14px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kc-np__rpm {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+/* Полоса перемотки с «резиной» */
+.kc-np__seek {
+  margin: -8px 0;
+  padding: 8px 0;
+  cursor: pointer;
+  touch-action: none;
+  border-radius: 4px;
+}
+
+.kc-np__seek:focus-visible {
+  outline: none;
+}
+
+.kc-np__seek:focus-visible .kc-np__railwrap {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.kc-np__seekrow {
+  margin-top: 20px;
+}
+
+.kc-np__railwrap {
+  height: 6px;
+}
+
+.kc-np__rail {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.kc-np__fill {
+  height: 100%;
+  width: 100%;
+  background: var(--now-playing-accent, #f97316);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+.kc-np__times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.kc-np__clock {
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.kc-np__digit {
+  position: relative;
+  display: inline-block;
+  height: 1lh;
+  overflow: hidden;
+}
+
+.kc-np__digit span {
+  display: block;
+}
+
+@keyframes now-playing-in-up {
+  from { transform: translateY(90%); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes now-playing-out-up {
+  from { transform: none; opacity: 1; }
+  to { transform: translateY(-90%); opacity: 0; }
+}
+
+@keyframes now-playing-in-down {
+  from { transform: translateY(-90%); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes now-playing-out-down {
+  from { transform: none; opacity: 1; }
+  to { transform: translateY(90%); opacity: 0; }
+}
+
+.kc-np__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.kc-np__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.kc-np__btn:hover {
+  background: var(--surface-muted);
+  color: var(--foreground);
+}
+
+[data-theme='dark'] .kc-np__btn:hover {
+  background: #26262b;
+}
+
+.kc-np__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #18181b;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.kc-np__play:hover {
+  background: #3f3f46;
+}
+
+[data-theme='dark'] .kc-np__play {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+[data-theme='dark'] .kc-np__play:hover {
+  background: #ffffff;
+}
+
+.kc-np.is-single .kc-np__btn {
+  display: none;
+}
+
+.kc-np__note {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.kc-np__note a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.kc-np__note a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.kc-np__note a:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Card Flip — визитка с физикой щелчка
+   ============================================================ */
+.kc-flip {
+  position: relative;
+  width: 260px;
+  aspect-ratio: 7 / 10;
+  perspective: 1100px;
+  user-select: none;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.kc-flip:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 8px;
+  border-radius: 16px;
+}
+
+.kc-flip__shadow {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -28px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  filter: blur(6px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.kc-flip__tilt {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.kc-flip__card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.kc-flip__card:active {
+  cursor: grabbing;
+}
+
+.kc-flip__slice {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: #d4d4d8;
+}
+
+.kc-flip__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #e4e4e7;
+  background: #ffffff;
+  color: #18181b;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.kc-flip__bandwrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.kc-flip__shade {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  opacity: 0;
+}
+
+.kc-flip__band {
+  position: absolute;
+  height: 220%;
+  width: 33.33%;
+  flex-shrink: 0;
+  background: #ffffff;
+  opacity: 0;
+}
+
+/* Содержимое визитки */
+.vcard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.vcard__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vcard__eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.vcard__chip {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.vcard__edition {
+  margin-top: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: #2563eb;
+}
+
+.vcard__name {
+  margin-top: 4px;
+  font-size: 26px;
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.vcard__fields {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+
+.vcard__field dt {
+  font-size: 11px;
+  color: #71717a;
+}
+
+.vcard__field dd {
+  margin-top: 1px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.vcard__divider {
+  margin: 16px -20px;
+  border-top: 1px dashed #d4d4d8;
+}
+
+.vcard__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vcard__hint {
+  font-size: 11px;
+  line-height: 1.35;
+  color: #71717a;
+}
+
+.vcard__qr {
+  margin: 16px auto 0;
+  width: 62%;
+  padding: 10px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #e4e4e7;
+}
+
+.vcard__qr svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.vcard__links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vcard__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #18181b;
+  text-decoration: none;
+}
+
+.vcard__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vcard__link .icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* Секция контактов: копия · визитка (плеер живёт в футере) */
+.contact__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 384px) auto;
+  gap: 48px;
+  align-items: center;
+}
+
+.contact__inner .kc-glass {
+  width: 100%;
+}
+
+@media (max-width: 1180px) {
+  .contact__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .contact__inner .kc-glass {
+    grid-column: 1 / -1;
+    max-width: 384px;
+  }
+}
+
+.contact__copy .contact__actions {
+  margin-top: 32px;
+}
+
+.contact__feedback {
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .contact__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    justify-items: start;
+  }
+}
+
+/* ============================================================
+   Morph Popover — кнопка-отзыв в футере
+   ============================================================ */
+.kc-morph {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  height: 36px;
+}
+
+.kc-morph__sizer {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.kc-morph__shell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow: var(--shadow-sm);
+  width: 120px;
+  height: 36px;
+  transition: width 420ms cubic-bezier(0.3, 1.3, 0.45, 1),
+    height 420ms cubic-bezier(0.3, 1.3, 0.45, 1),
+    border-radius 420ms cubic-bezier(0.3, 1.3, 0.45, 1),
+    box-shadow 200ms ease;
+}
+
+.kc-morph.is-expanded .kc-morph__shell {
+  border-radius: 16px;
+  box-shadow: var(--shadow-floating);
+}
+
+.kc-morph__idle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms ease, opacity 100ms ease;
+}
+
+.kc-morph__idle:hover {
+  background: var(--surface-muted);
+}
+
+[data-theme='dark'] .kc-morph__idle:hover {
+  background: #1e1e22;
+}
+
+.kc-morph__idle .kc-morph__icon {
+  color: var(--text-secondary);
+  display: inline-flex;
+}
+
+.kc-morph__form {
+  display: none;
+  flex-direction: column;
+}
+
+.kc-morph.is-expanded .kc-morph__idle {
+  display: none;
+}
+
+.kc-morph.is-expanded .kc-morph__form {
+  display: flex;
+  opacity: 1;
+}
+
+.kc-morph.is-closing .kc-morph__form {
+  opacity: 0;
+  transition: opacity 100ms ease;
+}
+
+.kc-morph__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.kc-morph__head .kc-morph__icon {
+  color: var(--text-secondary);
+  display: inline-flex;
+}
+
+.kc-morph__field {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(4px);
+  filter: blur(4px);
+  transition: opacity 200ms cubic-bezier(0.23, 1, 0.32, 1) 80ms,
+    transform 200ms cubic-bezier(0.23, 1, 0.32, 1) 80ms,
+    filter 200ms cubic-bezier(0.23, 1, 0.32, 1) 80ms;
+}
+
+.kc-morph.is-expanded .kc-morph__field {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.kc-morph__textarea {
+  height: 96px;
+  width: 100%;
+  resize: none;
+  border: none;
+  background: transparent;
+  padding: 8px 14px 0;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  outline: none;
+}
+
+.kc-morph__textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.kc-morph__textarea:disabled {
+  opacity: 0.6;
+}
+
+.kc-morph__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-muted);
+}
+
+.kc-morph__kbd {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.kc-morph__kbd kbd {
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--background);
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.kc-morph__send {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 8px;
+  background: #18181b;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 150ms ease, opacity 150ms ease;
+}
+
+.kc-morph__send:hover:not(:disabled) {
+  background: #3f3f46;
+}
+
+[data-theme='dark'] .kc-morph__send {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+[data-theme='dark'] .kc-morph__send:hover:not(:disabled) {
+  background: #ffffff;
+}
+
+.kc-morph__send:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.kc-morph__send svg {
+  animation: kc-spin 0.8s linear infinite;
+}
+
+@keyframes kc-spin {
+  to { transform: rotate(360deg); }
+}
+
+.kc-morph__sent {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.kc-morph.is-sent .kc-morph__form {
+  display: none;
+}
+
+.kc-morph.is-sent .kc-morph__sent {
+  display: flex;
+  opacity: 1;
+}
+
+.kc-morph__sent .icon {
+  width: 16px;
+  height: 16px;
+  color: #10b981;
+}
+
+/* ============================================================
+   Утилиты
+   ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Уважение к reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .kc-np__digit span {
+    animation: none !important;
+  }
+
+  .kc-np__digit .kc-np__digit-prev {
+    display: none;
+  }
+
+  .kc-np__tonearm {
+    transition: none;
+  }
+
+  .kc-morph__shell,
+  .kc-morph__field {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* ============================================================
+   Свечение плеера при воспроизведении + лайк
+   ============================================================ */
+
+
+
+  50% { opacity: 0.28; }
+}
+
+.kc-np__like svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: fill 300ms ease, stroke 300ms ease;
+}
+
+.kc-np__like.is-liked svg path {
+  fill: #ef4444;
+  stroke: #ef4444;
+}
+
+.kc-np__like.is-liked svg {
+  transform-origin: center;
+  animation: kc-like-pop 620ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes kc-like-pop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.38); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-np__like.is-liked svg { animation: none; }
+}

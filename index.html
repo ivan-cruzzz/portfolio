@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ivan Cruz — Frontend / Multimedia Developer</title>
+  <meta name="description" content="Портфолио Ivan Cruz: фронтенд и мультимедиа разработка. Основные проекты — обучение шахматам и приложение против лени. TypeScript, React, Three.js.">
+  <meta property="og:title" content="Ivan Cruz — Frontend / Multimedia Developer">
+  <meta property="og:description" content="Основные проекты: обучение шахматам, приложение против лени. TypeScript, React, Three.js.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='600' fill='%23ffffff' text-anchor='middle'%3EIC%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    /* Тема до первого кадра: сохранённая → системная → светлая */
+    (function () {
+      try {
+        var t = localStorage.getItem('kc-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/kokonut.css">
+</head>
+<body class="preloading">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__disc"><span>IC</span></div>
+  </div>
+  <a class="skip-link" href="#projects">Перейти к проектам</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__name" href="#top">Ivan Cruz</a>
+      <nav class="site-header__nav" aria-label="Основная навигация">
+        <a href="#stack">Стек</a>
+        <a href="#projects">Проекты</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="site-header__socials">
+        <div class="lang-toggle" role="group" aria-label="Language / Язык">
+          <button class="lang-toggle__opt is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
+          <button class="lang-toggle__opt" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="kc-switch" type="button" aria-label="Тёмная тема" aria-pressed="false">
+          <svg class="kc-switch__icon" aria-hidden="true" fill="none" height="16" viewBox="0 0 24 24" width="16">
+            <mask id="kc-moon-mask">
+              <rect fill="white" height="32" width="32" x="-4" y="-4"/>
+              <circle class="kc-sw-bite" data-part="bite" fill="black" r="7.5" cx="17" cy="7"/>
+            </mask>
+            <g mask="url(#kc-moon-mask)">
+              <circle class="kc-sw-disc" data-part="disc" fill="currentColor" r="4.75" cx="12" cy="12"/>
+            </g>
+            <g stroke="currentColor" stroke-linecap="round" stroke-width="2">
+              <line class="kc-sw-ray" data-part="ray" data-index="0" x1="12" y1="4.5" x2="12" y2="2"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="1" x1="17.3" y1="6.7" x2="19.07" y2="4.93"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="2" x1="19.5" y1="12" x2="22" y2="12"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="3" x1="17.3" y1="17.3" x2="19.07" y2="19.07"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="4" x1="12" y1="19.5" x2="12" y2="22"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="5" x1="6.7" y1="17.3" x2="4.93" y2="19.07"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="6" x1="4.5" y1="12" x2="2" y2="12"/>
+              <line class="kc-sw-ray" data-part="ray" data-index="7" x1="6.7" y1="6.7" x2="4.93" y2="4.93"/>
+            </g>
+          </svg>
+          <span class="kc-switch__labels" aria-hidden="true">
+            <span data-part="label">Свет</span>
+            <span data-part="label">Ночь</span>
+          </span>
+        </button>
+        <a class="icon-btn" href="https://github.com/ivan-cruzzz" target="_blank" rel="noopener" aria-label="GitHub: ivan-cruzzz">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a class="icon-btn" href="https://t.me/CruzITdevv" target="_blank" rel="noopener" aria-label="Telegram: @CruzITdevv">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container">
+        <p class="hero__greeting">Привет, я</p>
+        <h1 class="hero__name">Ivan Cruz</h1>
+        <p class="hero__role">Frontend / Multimedia Developer</p>
+        <p class="hero__desc">
+          Разрабатываю приложения для веба, десктопа и мобильных:
+          TypeScript, React, Three.js. Люблю WebGL, шейдеры и аккуратные анимации.
+        </p>
+        <div class="hero__actions">
+          <a class="flow-btn" href="https://t.me/CruzITdevv" target="_blank" rel="noopener">
+            <span class="flow-btn__fill" aria-hidden="true"></span>
+            <span class="flow-btn__label">Написать в Telegram</span>
+            <span class="flow-btn__arrows" aria-hidden="true">
+              <svg class="arrow arrow--out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="arrow arrow--in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a class="ghost-btn" href="https://github.com/ivan-cruzzz" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+        <dl class="hero__stats">
+          <div class="stat">
+            <dt class="stat__num">6</dt>
+            <dd class="stat__label">выполненных проектов</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__num">100%</dt>
+            <dd class="stat__label">TypeScript</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__num">3</dt>
+            <dd class="stat__label">платформы: web, десктоп, мобайл</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="section section--surface" id="stack">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2>Стек</h2>
+          <p class="section__sub">Инструменты, с которыми я работаю.</p>
+        </div>
+        <ul class="stack-chips reveal" aria-label="Технологии">
+          <li>TypeScript</li>
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>React</li>
+          <li>Vite</li>
+          <li>Tailwind CSS</li>
+          <li>Framer Motion</li>
+          <li>Three.js</li>
+          <li>WebGL</li>
+          <li>Blender</li>
+          <li>React Native</li>
+          <li>Supabase</li>
+          <li>Netlify</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2>Проекты</h2>
+          <p class="section__sub" id="projects-sub">Нажмите на проект, чтобы посмотреть скриншоты и презентацию.</p>
+          <div class="projects-tabs" role="tablist" aria-label="Раздел проектов">
+            <button class="projects-tab is-active" id="tab-projects" type="button" role="tab" aria-selected="true" aria-controls="projects-grid">Проекты</button>
+            <button class="projects-tab" id="tab-landings" type="button" role="tab" aria-selected="false" aria-controls="landings-view">Лендинги</button>
+          </div>
+        </div>
+        <ul class="projects-grid" id="projects-grid" role="tabpanel" aria-labelledby="tab-projects">
+
+          <!-- 01 · Основной -->
+          <li class="project-card project-card--main reveal">
+            <span class="project-card__pin">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1z"/></svg>
+              Основной проект
+            </span>
+            <span class="project-card__num" aria-hidden="true">01</span>
+            <h3>M8 — обучение шахматам</h3>
+            <p>Интерактивное приложение для обучения шахматам в стиле Duolingo: задачи по темам, XP и уровни, собственный шахматный движок и AI-тренер.</p>
+            <ul class="project-card__tags" aria-label="Технологии">
+              <li>React 19</li>
+              <li>TypeScript</li>
+              <li>Tauri</li>
+              <li>Supabase</li>
+            </ul>
+            <div class="project-card__links">
+              <a class="card-link" href="https://github.com/ivan-cruzzz/m8-chess" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                Код
+              </a>
+              <button class="card-link card-link--btn project-card__open" data-project="m8" type="button">
+                Подробнее
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- 02 · Основной -->
+          <li class="project-card project-card--main reveal">
+            <span class="project-card__pin">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1z"/></svg>
+              Основной проект
+            </span>
+            <span class="project-card__num" aria-hidden="true">02</span>
+            <h3>Action &amp; Quality</h3>
+            <p>Приложение против лени и за дисциплину: облачко-настроение, привычки, фокус-сессии и аркада мини-игр. Работает офлайн как PWA.</p>
+            <ul class="project-card__tags" aria-label="Технологии">
+              <li>React 18</li>
+              <li>TypeScript</li>
+              <li>Supabase</li>
+              <li>Capacitor / Tauri</li>
+            </ul>
+            <div class="project-card__links">
+              <a class="card-link" href="https://github.com/ivan-cruzzz/Action-y-Quality" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                Код
+              </a>
+              <button class="card-link card-link--btn project-card__open" data-project="aq" type="button">
+                Подробнее
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- 03 · Основной -->
+          <li class="project-card project-card--main reveal">
+            <span class="project-card__pin">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1z"/></svg>
+              Основной проект
+            </span>
+            <span class="project-card__num" aria-hidden="true">03</span>
+            <h3>A11yLens</h3>
+            <p>Аудит доступности (WCAG 2.2) и кибербезопасности сайта за минуту: настоящий браузер, 60+ правил axe-core, проверка заголовков безопасности — и наглядный отчёт с оценками и рецептами исправления.</p>
+            <ul class="project-card__tags" aria-label="Технологии">
+              <li>TypeScript</li>
+              <li>Playwright</li>
+              <li>axe-core</li>
+            </ul>
+            <div class="project-card__links">
+              <a class="card-link" href="https://github.com/ivan-cruzzz/A11yLens" target="_blank" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                Код
+              </a>
+              <button class="card-link card-link--btn project-card__open" data-project="a11ylens" type="button">
+                Подробнее
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- 03 -->
+          <li class="project-card reveal">
+            <span class="project-card__num" aria-hidden="true">04</span>
+            <h3>Матилэнд</h3>
+            <p>Игровой тренажёр математики для 1–4 класса: 12 островов-тем, 4 режима раундов, мини-игры, Олимпиада и награды для героя. Без регистрации, работает офлайн как PWA.</p>
+            <ul class="project-card__tags" aria-label="Технологии">
+              <li>React 18</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+              <li>PWA</li>
+            </ul>
+            <div class="project-card__links">
+              <button class="card-link card-link--btn project-card__open" data-project="matiland" type="button">
+                Подробнее
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- 04 -->
+          <li class="project-card reveal">
+            <span class="project-card__num" aria-hidden="true">05</span>
+            <h3>Поток CRM</h3>
+            <p>Фулстек-MVP CRM для малых компаний (2–20 человек): канбан сделок, аналитика воронок, автоматизации email/Telegram и роли доступа.</p>
+            <ul class="project-card__tags" aria-label="Технологии">
+              <li>Next.js 15</li>
+              <li>Supabase</li>
+              <li>Prisma</li>
+            </ul>
+            <div class="project-card__links">
+              <button class="card-link card-link--btn project-card__open" data-project="crm" type="button">
+                Подробнее
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- 05 -->
+          <li class="project-card reveal">
+            <span class="project-card__num" aria-hidden="true">06</span>
+            <h3>Точка Роста</h3>
+            <p>Сайт онлайн-школы подготовки к ОГЭ и ЕГЭ: лендинг, каталог курсов, тарифы, блог и демо-личный кабинет ученика.</p>
+            <ul class="project-card__tags" aria-label="Технологии">
+              <li>Next.js 14</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+            </ul>
+            <div class="project-card__links">
+              <button class="card-link card-link--btn project-card__open" data-project="school" type="button">
+                Подробнее
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Вкладка «Лендинги»: каллажи скриншотов, фото в assets/landings/<slug>/ -->
+        <div class="landings-view reveal" id="landings-view" role="tabpanel" aria-labelledby="tab-landings" hidden></div>
+      </div>
+    </section>
+
+    <!-- PATH · таймлайн (замените пункты на свой опыт) -->
+    <section class="section section--surface" id="path">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2>Путь</h2>
+          <p class="section__sub">Коротко о том, как я пришёл к тому, что делаю.</p>
+        </div>
+        <ol class="timeline reveal">
+          <li class="timeline__item">
+            <span class="timeline__num">01</span>
+            <div class="timeline__card">
+              <h3>Первая строчка кода</h3>
+              <p>Начал с Python и быстро понял, что мне интересен веб и интерфейсы.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__num">02</span>
+            <div class="timeline__card">
+              <h3>Frontend</h3>
+              <p>TypeScript, React, первые пет-проекты и фулстек-эксперименты.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__num">03</span>
+            <div class="timeline__card">
+              <h3>Мультимедиа и 3D</h3>
+              <p>Three.js, WebGL, шейдеры — полюбил анимации и живые интерфейсы.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__num">04</span>
+            <div class="timeline__card">
+              <h3>Продуктовые проекты</h3>
+              <p>M8, Action & Quality, Поток CRM — от идеи до релиза на всех платформах.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="container contact__inner">
+        <div class="contact__copy">
+          <h2 class="contact__title reveal">Контакты</h2>
+          <p class="contact__sub reveal">Напишите мне в Telegram или посмотрите код на GitHub.</p>
+          <div class="contact__actions reveal">
+            <a class="flow-btn flow-btn--light" href="https://t.me/CruzITdevv" target="_blank" rel="noopener">
+              <span class="flow-btn__fill" aria-hidden="true"></span>
+              <span class="flow-btn__label">Telegram: @CruzITdevv</span>
+              <span class="flow-btn__arrows" aria-hidden="true">
+                <svg class="arrow arrow--out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg class="arrow arrow--in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+            <a class="ghost-btn ghost-btn--dark" href="https://github.com/ivan-cruzzz" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub: ivan-cruzzz
+            </a>
+            <button class="ghost-btn ghost-btn--dark" id="print-resume" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              <span data-i18n="resume-btn">Резюме (PDF)</span>
+            </button>
+          </div>
+          <div class="contact__copyrow">
+            <span class="contact__handle" data-i18n="copy-hint">или скопируйте:</span>
+            <span class="contact__handle contact__handle--name">@CruzITdevv</span>
+            <button class="copy-chip" id="copy-tg" type="button" aria-label="Скопировать Telegram">
+              <svg class="icon copy-chip__copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <svg class="icon copy-chip__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </button>
+          </div>
+          <p class="contact__copyright">© 2026 Ivan Cruz</p>
+
+          <!-- Отзыв (Kokonut UI: morph-popover) -->
+          <div class="contact__feedback">
+            <div class="kc-morph">
+              <span class="kc-morph__sizer kc-morph__sizer--idle" aria-hidden="true">
+                <span class="kc-morph__icon" style="width:16px;height:16px;display:inline-flex;">
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.75 4.25a1.5 1.5 0 0 1 1.5-1.5h7.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H7l-2.75 2.5v-2.5a1.5 1.5 0 0 1-1.5-1.5v-5Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.4"/></svg>
+                </span>
+                Отзыв
+              </span>
+              <span class="kc-morph__sizer kc-morph__sizer--sent" aria-hidden="true">
+                <span class="kc-morph__icon" style="width:16px;height:16px;display:inline-flex;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#10b981" opacity="0.15"/><path d="M4.75 8.25 7 10.5l4.25-4.75" stroke="#10b981" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/></svg>
+                </span>
+                Спасибо!
+              </span>
+              <div class="kc-morph__shell">
+                <button class="kc-morph__idle" type="button" aria-expanded="false" aria-haspopup="dialog">
+                  <span class="kc-morph__icon" aria-hidden="true">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2.75 4.25a1.5 1.5 0 0 1 1.5-1.5h7.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H7l-2.75 2.5v-2.5a1.5 1.5 0 0 1-1.5-1.5v-5Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.4"/></svg>
+                  </span>
+                  Отзыв
+                </button>
+                <form class="kc-morph__form" aria-label="Отзыв о сайте">
+                  <div class="kc-morph__head">
+                    <span class="kc-morph__icon" aria-hidden="true">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2.75 4.25a1.5 1.5 0 0 1 1.5-1.5h7.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H7l-2.75 2.5v-2.5a1.5 1.5 0 0 1-1.5-1.5v-5Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.4"/></svg>
+                    </span>
+                    Отзыв
+                  </div>
+                  <div class="kc-morph__field">
+                    <label class="sr-only" for="kc-feedback-text">Что улучшить на сайте?</label>
+                    <textarea class="kc-morph__textarea" id="kc-feedback-text" placeholder="Что улучшить на сайте?"></textarea>
+                    <div class="kc-morph__foot">
+                      <span class="kc-morph__kbd">
+                        <kbd>Ctrl</kbd><kbd>↵</kbd><span>— отправить</span>
+                      </span>
+                      <button class="kc-morph__send" type="submit" disabled>Отправить</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="kc-morph__sent" role="status">
+                  <svg class="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#10b981" opacity="0.15"/><path d="M4.75 8.25 7 10.5l4.25-4.75" stroke="#10b981" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/></svg>
+                  Спасибо!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <article class="kc-glass">
+          <script type="application/json" class="kc-np-data">
+          {
+            "tracks": [
+              {
+                "title": "Wicked Game",
+                "artist": "Chris Isaak",
+                "duration": 287,
+                "artwork": 0,
+                "accent": "#f97316",
+                "query": "Wicked Game Chris Isaak",
+                "artistMatch": "isaak",
+                "titleMatch": "wicked\\s*game"
+              },
+              {
+                "title": "Prayers",
+                "artist": "KADI & Miyagi",
+                "duration": 233,
+                "artwork": 1,
+                "accent": "#38bdf8",
+                "query": "Prayers Kadi Miyagi",
+                "artistMatch": "kadi|miyagi",
+                "titleMatch": "prayers?",
+                "yt": "https://music.yandex.ru/album/12097534/track/71174691"
+              }
+            ]
+          }
+          </script>
+          <span class="kc-glass__refract" aria-hidden="true"></span>
+          <span class="kc-glass__shadow" aria-hidden="true"></span>
+          <div class="kc-np">
+            <div class="kc-np__body">
+              <div class="kc-np__top">
+                <div class="kc-np__deck">
+                  <div class="kc-np__disc" title="Крутите, чтобы перемотать"></div>
+                </div>
+                <div class="kc-np__meta">
+                  <div class="kc-np__meterline">
+                    <span class="kc-np__bars" aria-hidden="true">
+                      <span class="kc-np__bar"></span>
+                      <span class="kc-np__bar"></span>
+                      <span class="kc-np__bar"></span>
+                      <span class="kc-np__bar"></span>
+                      <span class="kc-np__bar"></span>
+                    </span>
+                    <span class="kc-np__eyebrow">Сейчас играет</span>
+                  </div>
+                  <h3 class="kc-np__title"></h3>
+                  <p class="kc-np__artist"></p>
+                  <span class="kc-np__rpm">0 rpm</span>
+                </div>
+              </div>
+              <div class="kc-np__seekrow">
+                <div class="kc-np__seek" role="slider" tabindex="0" aria-label="Перемотка" aria-valuemin="0" aria-valuemax="287" aria-valuenow="0">
+                  <div class="kc-np__railwrap">
+                    <div class="kc-np__rail"><div class="kc-np__fill"></div></div>
+                  </div>
+                </div>
+                <div class="kc-np__times">
+                  <span class="kc-np__clock" aria-hidden="true"></span>
+                  <span class="kc-np__total">4:47</span>
+                </div>
+              </div>
+              <div class="kc-np__controls">
+                <button class="kc-np__btn kc-np__prev" type="button" aria-label="Предыдущий трек">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 20 9 12l10-8v16Z"/><path d="M5 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <button class="kc-np__play" type="button" aria-label="Слушать">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7Z"/></svg>
+                </button>
+                <button class="kc-np__btn kc-np__next" type="button" aria-label="Следующий трек">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m5 4 10 8-10 8V4Z"/><path d="M19 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Визитка (Kokonut UI: card-flip) — потяните за край или щёлкните -->
+        <div class="kc-flip"
+             role="group"
+             aria-roledescription="flip card"
+             aria-label="Визитка Ivan Cruz"
+             aria-describedby="kc-flip-hint"
+             tabindex="0"
+             data-axis="y">
+          <div class="kc-flip__shadow" aria-hidden="true"></div>
+          <div class="kc-flip__tilt">
+            <div class="kc-flip__card">
+              <!-- Лицо: кто я -->
+              <div class="kc-flip__face">
+                <div class="vcard">
+                  <div class="vcard__top">
+                    <span class="vcard__eyebrow">Open to work</span>
+                    <span class="vcard__chip">IC</span>
+                  </div>
+                  <p class="vcard__edition">Frontend / Multimedia</p>
+                  <h3 class="vcard__name">Ivan Cruz</h3>
+                  <dl class="vcard__fields">
+                    <div class="vcard__field">
+                      <dt>Стек</dt>
+                      <dd>TS · React · Three.js</dd>
+                    </div>
+                    <div class="vcard__field">
+                      <dt>Проектов</dt>
+                      <dd>6</dd>
+                    </div>
+                    <div class="vcard__field">
+                      <dt>Платформы</dt>
+                      <dd>web · desktop · mobile</dd>
+                    </div>
+                  </dl>
+                  <div class="vcard__divider" aria-hidden="true"></div>
+                  <div class="vcard__bottom">
+                    <div>
+                      <p class="vcard__hint">Потяните за край,<br>чтобы перевернуть</p>
+                    </div>
+                    <p class="vcard__hint">@CruzITdevv</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Оборот: QR на Telegram + GitHub -->
+              <div class="kc-flip__face">
+                <div class="vcard">
+                  <div class="vcard__top">
+                    <span class="vcard__eyebrow">Сканируйте и пишите</span>
+                    <span class="vcard__chip">TG</span>
+                  </div>
+                  <div class="vcard__qr">
+                    <svg role="img" aria-label="QR-код: Telegram @CruzITdevv" shape-rendering="crispEdges" viewBox="0 0 21 21">
+                      <path fill="#18181b" d=""></path>
+                    </svg>
+                  </div>
+                  <div class="vcard__links">
+                    <a class="vcard__link" href="https://t.me/CruzITdevv" target="_blank" rel="noopener">
+                      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+                      Telegram: @CruzITdevv
+                    </a>
+                    <a class="vcard__link" href="https://github.com/ivan-cruzzz" target="_blank" rel="noopener">
+                      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                      GitHub: ivan-cruzzz
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="sr-only" id="kc-flip-hint">Визитка: нажмите Enter, пробел или потяните, чтобы перевернуть.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- FLOATING DOCK -->
+  <nav class="dock" aria-label="Навигация по сайту">
+    <a class="dock-item" href="#top" data-target="top" aria-label="Начало">
+      <span class="dock-item__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </span>
+      <span class="dock-item__tooltip" aria-hidden="true">Начало</span>
+    </a>
+    <a class="dock-item" href="#stack" data-target="stack" aria-label="Стек">
+      <span class="dock-item__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+      </span>
+      <span class="dock-item__tooltip" aria-hidden="true">Стек</span>
+    </a>
+    <a class="dock-item" href="#projects" data-target="projects" aria-label="Проекты">
+      <span class="dock-item__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+      </span>
+      <span class="dock-item__tooltip" aria-hidden="true">Проекты</span>
+    </a>
+    <a class="dock-item" href="#contact" data-target="contact" aria-label="Контакты">
+      <span class="dock-item__icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+      </span>
+      <span class="dock-item__tooltip" aria-hidden="true">Контакты</span>
+    </a>
+  </nav>
+
+  <!-- МОДАЛКА ПРОЕКТА -->
+  <dialog class="project-modal" id="project-modal" aria-labelledby="project-modal-title">
+    <article class="project-modal__inner">
+      <div class="project-modal__top">
+        <span class="project-modal__pin" id="project-modal-pin" hidden>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1z"/></svg>
+          Основной проект
+        </span>
+        <button class="project-modal__close" id="project-modal-close" type="button" aria-label="Закрыть">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="project-modal__body">
+        <h3 class="project-modal__title" id="project-modal-title"></h3>
+        <ul class="project-modal__tags" id="project-modal-tags"></ul>
+        <p class="project-modal__desc" id="project-modal-desc"></p>
+        <div class="modal-shots" id="project-modal-shots"></div>
+        <ul class="project-modal__features" id="project-modal-features"></ul>
+        <div class="project-modal__links" id="project-modal-links"></div>
+      </div>
+    </article>
+  </dialog>
+
+  <script src="js/vendor/anime.umd.min.js" defer></script>
+  <script src="js/vendor/qrcode-generator.js" defer></script>
+  <script src="js/kokonut.js" defer></script>
+  <script src="js/i18n.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+  <script src="js/landings.js" defer></script>
+  <script src="js/fx.js" defer></script>
+  <script src="js/anim.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
