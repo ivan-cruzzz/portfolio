@@ -146,6 +146,28 @@ const PROJECTS = {
     pdf: null,
     github: 'https://github.com/ivan-cruzzz/A11yLens',
   },
+  zcode: {
+    title: 'ZCODE Control',
+    main: false,
+    tags: ['Vite', 'React', 'Tailwind CSS', 'Node.js'],
+    desc: 'Пульт управления ZCode в Telegram: смотрите, чем занят ZCode на компьютере, читайте сессии и диалоги, отправляйте запросы и управляйте ботами — прямо с телефона. Мини-апп живёт на GitHub Pages, а маленький Node-мост запускается на вашем ПК рядом с ZCode: читает базу только для чтения, сам поднимает HTTPS-туннель и проверяет подпись Telegram — переписка и статистика не покидают ваш компьютер.',
+    features: [
+      'Живой статус: ZCode активен или простаивает, текущая сессия, модель и режим, токены за день и график за 7 дней',
+      'Сессии с метками live/готово/прервана: задачи, диалог с ассистентом, использованные инструменты и полнотекстовый поиск по сообщениям',
+      'Чат-пульт: вопросы обычными словами, slash-команды и выбор моделей Z.ai (GLM-5.3 / GLM-4.6 / GLM-5.3-Flash)',
+      'Управление ботами с телефона: вкл/выкл, гранулярность ответов, доступ к проектам, разрешённые команды',
+      'Статистика: токены по дням, топ моделей и инструментов',
+      'Безопасность: initData HMAC, read-only доступ к SQLite, автотуннель cloudflared — данные не покидают ваш ПК',
+      'Работает в демо-режиме без настройки: ivan-cruzzz.github.io/zcode-control',
+    ],
+    images: [
+      { src: 'assets/img/zcode-control/01-overview.jpg', alt: 'ZCODE Control — живой статус и статистика токенов' },
+      { src: 'assets/img/zcode-control/02-connect.jpg', alt: 'ZCODE Control — мастер подключения моста' },
+      { src: 'assets/img/zcode-control/03-chat.jpg', alt: 'ZCODE Control — чат-пульт с выбором модели' },
+    ],
+    pdf: { src: 'assets/pdf/zcode-control-presentation.pdf', label: 'Презентация проекта (PDF, 5 слайдов)' },
+    github: 'https://github.com/ivan-cruzzz/zcode-control',
+  },
 };
 
 (() => {

@@ -89,6 +89,19 @@
         'Free/Pro/Business plans, ⌘K command palette, history with sparklines, an interactive WCAG 2.2 guide, a README SVG badge, RU/EN',
       ],
     },
+    zcode: {
+      title: 'ZCODE Control',
+      desc: 'A Telegram remote control for ZCode: see what ZCode is doing on your computer, read sessions and dialogues, send requests and manage bots — right from your phone. The mini app lives on GitHub Pages while a small Node bridge runs on your PC next to ZCode: it reads the database read-only, raises an HTTPS tunnel automatically and verifies the Telegram signature — your chats and stats never leave your computer.',
+      features: [
+        'Live status: whether ZCode is active or idle, the current session, model and mode, daily tokens and a 7-day chart',
+        'Sessions tagged live/done/aborted: todos, the assistant dialogue, tools used and full-text search across messages',
+        'Chat console: ask in plain words, slash-commands and a Z.ai model picker (GLM-5.3 / GLM-4.6 / GLM-5.3-Flash)',
+        'Bot management from your phone: on/off, reply granularity, project access, allowed commands',
+        'Statistics: tokens per day, top models and tools',
+        'Security: initData HMAC, read-only SQLite access, an automatic cloudflared tunnel — data never leaves your PC',
+        'Works in demo mode with zero setup: ivan-cruzzz.github.io/zcode-control',
+      ],
+    },
   };
 
   /* EN-тексты статичной страницы: [селектор, текст, режим?] */
@@ -145,12 +158,14 @@
     ['.projects-grid li:nth-child(2) p', 'An app against procrastination, for discipline: a mood cloud, habits, focus sessions and an arcade of mini-games. Works offline as a PWA.'],
     ['.projects-grid li:nth-child(3) h3', 'A11yLens'],
     ['.projects-grid li:nth-child(3) p', 'One-minute WCAG 2.2 and security audit: a real browser, 60+ axe-core rules, security-header checks and one visual report with scores and fix recipes.'],
-    ['.projects-grid li:nth-child(4) h3', 'Matiland'],
-    ['.projects-grid li:nth-child(4) p', 'A game-based maths trainer for grades 1–4: 12 topic islands, 4 round modes, mini-games and hero rewards. No sign-up, works offline as a PWA.'],
-    ['.projects-grid li:nth-child(5) h3', 'Potok CRM'],
-    ['.projects-grid li:nth-child(5) p', 'A full-stack CRM MVP for small teams: deal kanban, funnel analytics, e-mail/Telegram automations and access roles.'],
-    ['.projects-grid li:nth-child(6) h3', 'Tochka Rosta'],
-    ['.projects-grid li:nth-child(6) p', 'A website for an online exam-prep school: landing page, course catalogue, pricing, blog and a demo student dashboard.'],
+    ['.projects-grid li:nth-child(4) h3', 'ZCODE Control'],
+    ['.projects-grid li:nth-child(4) p', 'A Telegram remote control for ZCode: live status, sessions and dialogues, a chat assistant and token stats. A local bridge with an auto-tunnel keeps your data on your computer.'],
+    ['.projects-grid li:nth-child(5) h3', 'Matiland'],
+    ['.projects-grid li:nth-child(5) p', 'A game-based maths trainer for grades 1–4: 12 topic islands, 4 round modes, mini-games and hero rewards. No sign-up, works offline as a PWA.'],
+    ['.projects-grid li:nth-child(6) h3', 'Potok CRM'],
+    ['.projects-grid li:nth-child(6) p', 'A full-stack CRM MVP for small teams: deal kanban, funnel analytics, e-mail/Telegram automations and access roles.'],
+    ['.projects-grid li:nth-child(7) h3', 'Tochka Rosta'],
+    ['.projects-grid li:nth-child(7) p', 'A website for an online exam-prep school: landing page, course catalogue, pricing, blog and a demo student dashboard.'],
   ];
 
   const ruCache = new Map();
