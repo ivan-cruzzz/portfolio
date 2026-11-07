@@ -939,6 +939,19 @@ a {
   background: #000000;
 }
 
+.showreel__video {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid #333333;
+  border-radius: var(--radius-md);
+  background: #000000;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.45);
+}
+
 .project-modal__links {
   display: flex;
   flex-wrap: wrap;

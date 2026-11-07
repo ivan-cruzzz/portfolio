@@ -195,7 +195,7 @@ const PROJECTS = {
   }
 
   /* Scrollspy: активный пункт дока по текущей секции */
-  const sectionIds = ['top', 'stack', 'projects', 'contact'];
+  const sectionIds = ['top', 'stack', 'showreel', 'projects', 'contact'];
   const sections = sectionIds
     .map((id) => document.getElementById(id))
     .filter(Boolean);
